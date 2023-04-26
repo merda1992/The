@@ -7,7 +7,7 @@ export default {
   },
   primary: {
     light: '#10102D',
-    main: '#23335F',
+    main: "#ffcc00",
     dark: 'linear-gradient(90deg, #F16152 0%, #F99746 40.1%, #BBC9DF 59.9%)',
     contrastText: 'rgba(66, 92, 116, 0.5)',
   },
