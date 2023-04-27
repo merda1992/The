@@ -27,6 +27,13 @@ const IconBox = styled(Box)(({ theme }) => ({
   },
 }));
 
+const TypographyBox = styled(Box)(({ theme }) => ({
+  marginLeft: '20px',
+  cursor: 'pointer',
+}));
+
+const IconsSoc = [FacebookIcon, YouTubeIcon, TwitterIcon, InstagramIcon, TelegramIcon];
+
 const MainHeader = () => {
   const handleClickByLink = (url: string) => window.open(url);
 
@@ -34,27 +41,25 @@ const MainHeader = () => {
     <HeaderBox>
       <Box display="flex" alignItems="center">
         <Box>
-          <Typography fontFamily="fantasy" fontWeight="500" color="#ffcc00">
+          <Typography fontFamily="fantasy" fontWeight="600" color="primary.main">
             The COverStar
           </Typography>
         </Box>
-        <IconBox onClick={() => handleClickByLink('https://vk.com')}>
-          <FacebookIcon fontSize="large" />
-        </IconBox>
-        <IconBox onClick={() => handleClickByLink('https://vk.com')}>
-          <YouTubeIcon fontSize="large" />
-        </IconBox>
-        <IconBox onClick={() => handleClickByLink('https://vk.com')}>
-          <TwitterIcon fontSize="large" />
-        </IconBox>
-        <IconBox onClick={() => handleClickByLink('https://vk.com')}>
-          <InstagramIcon fontSize="large" />
-        </IconBox>
-        <IconBox onClick={() => handleClickByLink('https://vk.com')}>
-          <TelegramIcon fontSize="large" />
-        </IconBox>
+        {IconsSoc.map((Icon, idx) => (
+          <IconBox key={idx} onClick={() => handleClickByLink('https://vk.com')}>
+            <Icon fontSize="large" />
+          </IconBox>
+        ))}
       </Box>
-      <Box>fgf</Box>
+      <Box display="flex" alignItems="center">
+        {['seacrh', 'rating', 'category', 'sign up'].map((item, idx) => (
+          <TypographyBox key={idx}>
+            <Typography fontFamily="fantasy" fontWeight="600" color="primary.main">
+              {item}
+            </Typography>
+          </TypographyBox>
+        ))}
+      </Box>
     </HeaderBox>
   );
 };

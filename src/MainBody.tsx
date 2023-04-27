@@ -24,9 +24,7 @@ const ContentBox = styled(Box)(({ theme }) => ({
 const MainBody = () => {
   return (
     <BodyBox>
-      <ContentBox>
-        {/* <img src={Guitar} alt="guitar" /> */}
-      </ContentBox>
+      <ContentBox>{/* <img src={Guitar} alt="guitar" /> */}</ContentBox>
       <Box display="flex" width="40%" textAlign="center">
         <Typography
           display="flex"
@@ -46,9 +44,7 @@ const MainBody = () => {
           erStar
         </Typography>
       </Box>
-      <ContentBox>
-        {/* <img src={Drums} alt="drum" /> */}
-      </ContentBox>
+      <ContentBox>{/* <img src={Drums} alt="drum" /> */}</ContentBox>
     </BodyBox>
   );
 };
