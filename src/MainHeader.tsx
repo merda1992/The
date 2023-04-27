@@ -1,11 +1,15 @@
 import React from 'react';
+
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
+
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
+
+import Logo from './logo';
 
 const HeaderBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.common.black,
@@ -27,7 +31,7 @@ const IconBox = styled(Box)(({ theme }) => ({
   },
 }));
 
-const TypographyBox = styled(Box)(({ theme }) => ({
+const TypographyBox = styled(Box)(() => ({
   marginLeft: '20px',
   cursor: 'pointer',
 }));
@@ -40,11 +44,7 @@ const MainHeader = () => {
   return (
     <HeaderBox>
       <Box display="flex" alignItems="center">
-        <Box>
-          <Typography fontFamily="fantasy" fontWeight="600" color="primary.main">
-            The COverStar
-          </Typography>
-        </Box>
+        <Logo width={undefined} fontSize="18px" imgHeight="12px" fontFamily="fantasy" marginRight="5px" />
         {IconsSoc.map((Icon, idx) => (
           <IconBox key={idx} onClick={() => handleClickByLink('https://vk.com')}>
             <Icon fontSize="large" />
