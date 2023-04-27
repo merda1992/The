@@ -9,7 +9,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 
-import Logo from './logo';
+import Logo from './Logo';
 
 const HeaderBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.common.black,
@@ -44,7 +44,7 @@ const MainHeader = () => {
   return (
     <HeaderBox>
       <Box display="flex" alignItems="center">
-        <Logo width={undefined} fontSize="18px" imgHeight="12px" fontFamily="fantasy" marginRight="5px" />
+        <Logo width={undefined} fontSize="18px" imgHeight="16px" fontFamily="fantasy" marginRight="5px" />
         {IconsSoc.map((Icon, idx) => (
           <IconBox key={idx} onClick={() => handleClickByLink('https://vk.com')}>
             <Icon fontSize="large" />

@@ -13,8 +13,8 @@ interface LogoProps {
 }
 
 const Logo = ({
-  imgHeight = '30px',
-  fontSize = '45px',
+  imgHeight = '50px',
+  fontSize = '58px',
   width = '40%',
   fontFamily = 'Bradley Hand, cursive',
   marginRight,
@@ -48,7 +48,7 @@ const Logo = ({
       </Typography>
       {openSiteButton && (
         <Box mt="30px">
-          <Button sx={{ backgroundColor: 'red', color: 'white', fontWeight: 600 }}>Welcome to The CoverStar</Button>
+          <Button sx={{ fontWeight: 600 }}>Welcome to The CoverStar</Button>
         </Box>
       )}
     </Box>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 import { styled } from '@mui/system';
-import Logo from './logo';
+import Logo from './Logo';
 
 const BodyBox = styled(Box)(() => ({
   backgroundColor: 'black',

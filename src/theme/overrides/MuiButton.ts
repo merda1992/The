@@ -12,9 +12,9 @@ export default {
       fontWeight: 'normal',
       lineHeight: '16px',
       fontSize: '15px',
-      boxShadow: 'none',
+      boxShadow: '0 0 15px #1E90FF',
       '&:hover': {
-        boxShadow: '0 0 15px #F16152',
+        boxShadow: '0 0 15px #1E90FF',
       },
       '&.Mui-focusVisible': {
         boxShadow: '0 0 15px #F16152',
