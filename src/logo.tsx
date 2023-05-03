@@ -4,48 +4,51 @@ import Drums from './pictures/drums.png';
 import Guitar from './pictures/guitar.png';
 
 interface LogoProps {
-  width?: string;
   imgHeight?: string;
   fontSize?: string;
   fontFamily?: string;
   marginRight?: string;
   openSiteButton?: boolean;
+  otherColorText?: boolean;
 }
 
 const Logo = ({
   imgHeight = '50px',
   fontSize = '58px',
-  width = '40%',
   fontFamily = 'Bradley Hand, cursive',
   marginRight,
   openSiteButton,
+  otherColorText,
 }: LogoProps) => {
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      width={width}
-      textAlign="center"
-      mr={marginRight}
-    >
-      <Typography
-        display="flex"
-        fontFamily={fontFamily}
-        color="primary.main"
-        fontSize={fontSize}
-        margin="0 auto"
-        alignItems="center"
-      >
-        The C
+    <Box display="flex" flexDirection="column" justifyContent="center" textAlign="center" mr={marginRight} width="100%">
+      <Box display="flex" alignItems="center">
+        <Typography
+          fontFamily={fontFamily}
+          color={otherColorText ? 'primary.main' : 'primary.light'}
+          fontSize={fontSize}
+          marginLeft="auto"
+          whiteSpace="nowrap"
+        >
+          The C
+        </Typography>
+
         <Box>
           <img height={imgHeight} src={Drums} alt="guitar" />
         </Box>
         <Box>
           <img height={imgHeight} src={Guitar} alt="guitar" />
         </Box>
-        erStar
-      </Typography>
+        <Typography
+          fontFamily={fontFamily}
+          color={otherColorText ? 'primary.main' : 'primary.light'}
+          fontSize={fontSize}
+          marginRight="auto"
+          alignItems="center"
+        >
+          erStar
+        </Typography>
+      </Box>
       {openSiteButton && (
         <Box mt="30px">
           <Button sx={{ fontWeight: 600 }}>Welcome to The CoverStar</Button>

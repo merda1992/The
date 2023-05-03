@@ -5,7 +5,8 @@ export default {
     root: {
       fontSize: '15px',
       lineHeight: '18px',
-      color: palette.text.disabled,
+      color: palette.primary.main,
+      fontFamily: 'fantasy',
       left: '6px',
       '&[data-shrink="false"]': {
         marginTop: '-4px',

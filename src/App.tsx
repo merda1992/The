@@ -8,7 +8,7 @@ import { Box } from '@mui/material';
 
 function App() {
   return (
-    <Box display="flex" height="100vh" flexDirection="column" justifyContent="space-between">
+    <Box overflow="hidden" display="flex" height="100vh" flexDirection="column" justifyContent="space-between">
       <MainHeader />
       <MainBody />
       <MainFooter />

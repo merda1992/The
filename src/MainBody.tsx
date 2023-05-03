@@ -10,7 +10,7 @@ const BodyBox = styled(Box)(() => ({
 }));
 
 const ContentBox = styled(Box)(() => ({
-  width: '30%',
+  width: '100%',
   display: 'flex',
   alignItems: 'center',
 
