@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Typography, Link } from '@mui/material';
 import { styled } from '@mui/system';
 import { useLazyQuery, useMutation, ApolloError } from '@apollo/client';
-import { Query, QueryGetOneUseryArgs, getOneUser, Mutation, MutationCreateUserInputArg, createUser } from './gql';
+import { Query, QueryGetOneUseryArgs, getOneUser, Mutation, MutationCreateUserInputArg, createUser } from '../gql';
 
 const FooterBox = styled(Box)(({ theme }) => ({
   display: 'flex',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
-import Drums from './pictures/drums.png';
-import Guitar from './pictures/guitar.png';
+import Drums from '../pictures/drums.png';
+import Guitar from '../pictures/guitar.png';
 
 interface LogoProps {
   imgHeight?: string;

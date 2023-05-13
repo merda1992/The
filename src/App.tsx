@@ -1,8 +1,8 @@
 import React from 'react';
 
-import MainHeader from './MainHeader';
-import MainFooter from './MainFooter';
-import MainBody from './MainBody';
+import MainHeader from './components/MainHeader';
+import MainFooter from './components/MainFooter';
+import MainBody from './components/MainBody';
 
 import { Box } from '@mui/material';
 
