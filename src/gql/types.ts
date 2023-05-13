@@ -11,11 +11,11 @@ export type Scalars = {
 };
 
 export type UserEntity = {
-  createAt: Scalars['DateTime'];
+  createdAt: Scalars['DateTime'];
   email: Scalars['String'];
   id: Scalars['ID'];
   name: Scalars['String'];
-  updateAt: Scalars['DateTime'];
+  updatedAt: Scalars['DateTime'];
 };
 
 export type QueryGetOneUseryArgs = {
@@ -34,11 +34,11 @@ export type UpdateUserInput = {
 };
 
 export type MutationCreateUserInputArg = {
-  createUser: CreateUserInput;
+  user: CreateUserInput;
 };
 
 export type MutationUpdateUserInputArg = {
-  updateUser: UpdateUserInput;
+  user: UpdateUserInput;
 };
 
 export type Mutation = {

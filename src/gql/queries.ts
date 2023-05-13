@@ -6,8 +6,8 @@ export const createUser = gql`
       id
       email
       name
-      createAt
-      updateAt
+      createdAt
+      updatedAt
     }
   }
 `;

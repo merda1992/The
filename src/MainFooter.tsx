@@ -26,29 +26,27 @@ const MainFooter = () => {
 
   const [createUser1] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserInputArg>(createUser);
 
-  console.log(data);
-
-  // const zalupa = async () => {
-  //   try {
-  //     await createUser1({
-  //       variables: {
-  //         user: {
-  //           name: '',
-  //           email: '',
-  //         },
-  //       },
-  //     });
-  //   } catch (error) {
-  //     const { graphQLErrors, message: errorText } = error as ApolloError;
-  //     const message = graphQLErrors && graphQLErrors.length ? graphQLErrors[0].message : errorText;
-  //     if (error) {
-  //       console.log(message);
-  //     }
-  //   }
-  // };
+  const newUser = async (name: string, email: string) => {
+    try {
+      await createUser1({
+        variables: {
+          user: {
+            name,
+            email,
+          },
+        },
+      });
+    } catch (error) {
+      const { graphQLErrors, message: errorText } = error as ApolloError;
+      const message = graphQLErrors && graphQLErrors.length ? graphQLErrors[0].message : errorText;
+      if (error) {
+        console.log(message);
+      }
+    }
+  };
 
   return (
-    <FooterBox>
+    <FooterBox onClick={(e) => newUser(String(e.currentTarget.clientWidth), String(e.currentTarget.clientHeight))}>
       <Box pl="20px">
         <Typography fontFamily="fantasy" fontSize="15px" fontWeight="400" color="primary.main">
           copyright © 2023 Coverstar, Inc.
