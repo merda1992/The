@@ -18,6 +18,10 @@ export type UserEntity = {
   updateAt: Scalars['DateTime'];
 };
 
+export type QueryGetOneUseryArgs = {
+  id: Scalars['ID'];
+};
+
 export type CreateUserInput = {
   email: Scalars['String'];
   name: Scalars['String'];
@@ -27,6 +31,14 @@ export type UpdateUserInput = {
   email?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
+};
+
+export type MutationCreateUserInputArg = {
+  createUser: CreateUserInput;
+};
+
+export type MutationUpdateUserInputArg = {
+  updateUser: UpdateUserInput;
 };
 
 export type Mutation = {

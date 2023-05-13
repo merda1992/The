@@ -24,7 +24,7 @@ export const updateUser = gql`
 `;
 
 export const removeUser = gql`
-  mutation removeUser($id: number!) {
+  mutation removeUser($id: Float!) {
     removeUser(id: $id) {
       id
     }
@@ -32,8 +32,8 @@ export const removeUser = gql`
 `;
 
 export const getAllUsers = gql`
-  query getAllUsers() {
-    getAllUsers() {
+  query getAllUsers {
+    getAllUsers {
       id
       email
     }
@@ -41,7 +41,7 @@ export const getAllUsers = gql`
 `;
 
 export const getOneUser = gql`
-  query getOneUser($id: number!) {
+  query getOneUser($id: Float!) {
     getOneUser(id: $id) {
       id
       email
