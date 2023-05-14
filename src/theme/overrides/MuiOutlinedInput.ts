@@ -9,7 +9,6 @@ export default {
       lineHeight: '18px',
       padding: 0,
       '& fieldset': {
-        borderColor: palette.text.disabled,
         '& legend': {
           height: '14px',
           fontSize: '12px',

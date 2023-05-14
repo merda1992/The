@@ -20,7 +20,7 @@ export default {
     },
     outlined: {
       '&[data-shrink="true"]': {
-        marginTop: '4px',
+        marginBottom: '2px',
       },
     },
   },

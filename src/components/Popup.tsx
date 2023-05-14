@@ -1,16 +1,14 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemText from '@mui/material/ListItemText';
+
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
-import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
-import { blue } from '@mui/material/colors';
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
+import { useTranslation } from 'react-i18next';
+
+import RegisterBlock from './Forms/RegisterForm/RegisterBlock';
+
+import { useMutation, ApolloError } from '@apollo/client';
+import { Mutation, MutationCreateUserArgs, createUser } from '../gql';
 
 export interface SimpleDialogProps {
   open: boolean;
@@ -19,30 +17,34 @@ export interface SimpleDialogProps {
 
 const Popup = (props: SimpleDialogProps) => {
   const { onClose, open } = props;
+  const { t } = useTranslation();
+
+  const [createUser1] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserArgs>(createUser);
+
+  const newUser = async (name: string, email: string) => {
+    try {
+      await createUser1({
+        variables: {
+          user: {
+            name,
+            email,
+            password: '1234',
+          },
+        },
+      });
+    } catch (error) {
+      const { graphQLErrors, message: errorText } = error as ApolloError;
+      const message = graphQLErrors && graphQLErrors.length ? graphQLErrors[0].message : errorText;
+      if (error) {
+        console.log(message);
+      }
+    }
+  };
 
   return (
     <Dialog onClose={onClose} open={open}>
-      <DialogTitle>Set backup account</DialogTitle>
-      <List sx={{ pt: 0 }}>
-        {emails.map((email) => (
-          <ListItem key={email}>
-            <ListItemAvatar>
-              <Avatar sx={{ bgcolor: blue[100], color: blue[600] }}>
-                <PersonIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={email} />
-          </ListItem>
-        ))}
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <AddIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary="Add account" />
-        </ListItem>
-      </List>
+      <DialogTitle sx={{ paddingBottom: 0 }}>{t('signUpPopup.title')}</DialogTitle>
+      <RegisterBlock margin="30px" />
     </Dialog>
   );
 };

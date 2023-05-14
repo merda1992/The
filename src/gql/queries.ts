@@ -8,6 +8,7 @@ export const createUser = gql`
       name
       createdAt
       updatedAt
+      status
     }
   }
 `;

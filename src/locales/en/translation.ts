@@ -1,5 +1,4 @@
 const translation = {
-  fRiroda: 'Welcome to React and react-i18next',
   footer: {
     copyright: 'copyright © 2023 Coverstar, Inc.',
     contactUs: 'contact us',
@@ -9,6 +8,9 @@ const translation = {
     rating: 'Rating',
     category: 'Category',
     signUp: 'Sign up',
+  },
+  signUpPopup: {
+    title: 'Log in to your account',
   },
 };
 

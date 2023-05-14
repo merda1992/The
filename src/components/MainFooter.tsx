@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Typography, Link } from '@mui/material';
 import { styled } from '@mui/system';
-import { useLazyQuery, useMutation, ApolloError } from '@apollo/client';
-import { Query, QueryGetOneUserArgs, getOneUser, Mutation, MutationCreateUserArgs, createUser } from '../gql';
+
 import { useTranslation } from 'react-i18next';
 
 const FooterBox = styled(Box)(({ theme }) => ({
@@ -15,41 +14,10 @@ const FooterBox = styled(Box)(({ theme }) => ({
 }));
 
 const MainFooter = () => {
-  // const [loadGreeting, { called, loading, data }] = useLazyQuery<Pick<Query, 'getOneUser'>, QueryGetOneUseryArgs>(
-  //   getOneUser,
-  //   {
-  //     fetchPolicy: 'cache-first',
-  //     variables: {
-  //       id: 2,
-  //     },
-  //   },
-  // );
-
   const { t } = useTranslation();
 
-  const [createUser1] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserArgs>(createUser);
-
-  const newUser = async (name: string, email: string) => {
-    try {
-      await createUser1({
-        variables: {
-          user: {
-            name,
-            email,
-          },
-        },
-      });
-    } catch (error) {
-      const { graphQLErrors, message: errorText } = error as ApolloError;
-      const message = graphQLErrors && graphQLErrors.length ? graphQLErrors[0].message : errorText;
-      if (error) {
-        console.log(message);
-      }
-    }
-  };
-
   return (
-    <FooterBox onClick={() => newUser('sd', 'dgf')}>
+    <FooterBox>
       <Box pl="20px">
         <Typography fontFamily="fantasy" fontSize="15px" fontWeight="400" color="primary.main">
           {t('footer.copyright')}
