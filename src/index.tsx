@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme/index';
+import './utils/i18n';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 const client = new ApolloClient({

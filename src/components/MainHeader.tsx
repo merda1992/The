@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/system';
@@ -10,6 +10,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 
 import Logo from './Logo';
+import Popup from './Popup';
 import Category from './Category';
 
 const HeaderBox = styled(Box)(({ theme }) => ({
@@ -40,6 +41,7 @@ const TypographyBox = styled(Box)(() => ({
 const IconsSoc = [FacebookIcon, YouTubeIcon, TwitterIcon, InstagramIcon, TelegramIcon];
 
 const MainHeader = () => {
+  const [popupIsOpen, serPopupIsOpen] = useState<boolean>(false);
   const handleClickByLink = (url: string) => window.open(url);
 
   return (
@@ -55,7 +57,7 @@ const MainHeader = () => {
       <Box display="flex" alignItems="center">
         {['Search', 'Rating', 'Category', 'Sign up'].map((item, idx) =>
           item !== 'Category' ? (
-            <TypographyBox key={idx}>
+            <TypographyBox onClick={item === 'Sign up' ? () => serPopupIsOpen(true) : undefined} key={idx}>
               <Typography fontFamily="fantasy" whiteSpace="nowrap" fontWeight="600" color="primary.main">
                 {item}
               </Typography>
@@ -65,6 +67,8 @@ const MainHeader = () => {
           ),
         )}
       </Box>
+
+      <Popup open={popupIsOpen} onClose={() => serPopupIsOpen(false)} />
     </HeaderBox>
   );
 };

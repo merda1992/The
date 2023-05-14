@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Typography, Link } from '@mui/material';
 import { styled } from '@mui/system';
 import { useLazyQuery, useMutation, ApolloError } from '@apollo/client';
-import { Query, QueryGetOneUseryArgs, getOneUser, Mutation, MutationCreateUserInputArg, createUser } from '../gql';
+import { Query, QueryGetOneUserArgs, getOneUser, Mutation, MutationCreateUserArgs, createUser } from '../gql';
+import { useTranslation } from 'react-i18next';
 
 const FooterBox = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -14,17 +15,19 @@ const FooterBox = styled(Box)(({ theme }) => ({
 }));
 
 const MainFooter = () => {
-  const [loadGreeting, { called, loading, data }] = useLazyQuery<Pick<Query, 'getOneUser'>, QueryGetOneUseryArgs>(
-    getOneUser,
-    {
-      fetchPolicy: 'cache-first',
-      variables: {
-        id: 2,
-      },
-    },
-  );
+  // const [loadGreeting, { called, loading, data }] = useLazyQuery<Pick<Query, 'getOneUser'>, QueryGetOneUseryArgs>(
+  //   getOneUser,
+  //   {
+  //     fetchPolicy: 'cache-first',
+  //     variables: {
+  //       id: 2,
+  //     },
+  //   },
+  // );
 
-  const [createUser1] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserInputArg>(createUser);
+  const { t } = useTranslation();
+
+  const [createUser1] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserArgs>(createUser);
 
   const newUser = async (name: string, email: string) => {
     try {
@@ -46,10 +49,10 @@ const MainFooter = () => {
   };
 
   return (
-    <FooterBox onClick={(e) => newUser(String(e.currentTarget.clientWidth), String(e.currentTarget.clientHeight))}>
+    <FooterBox onClick={() => newUser('sd', 'dgf')}>
       <Box pl="20px">
         <Typography fontFamily="fantasy" fontSize="15px" fontWeight="400" color="primary.main">
-          copyright © 2023 Coverstar, Inc.
+          {t('footer.copyright')}
         </Typography>
       </Box>
       <Box pr="20px">
@@ -58,7 +61,7 @@ const MainFooter = () => {
           sx={{ textDecoration: 'none', fontFamily: 'fantasy', fontSize: '15px', fontWeight: 400 }}
           color="primary.main"
         >
-          contact us
+          {t('footer.contactUs')}
         </Link>
       </Box>
     </FooterBox>
