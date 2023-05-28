@@ -51,7 +51,7 @@ const Logo = ({
       </Box>
       {openSiteButton && (
         <Box mt="30px">
-          <Button sx={{ fontWeight: 600 }}>Welcome to The CoverStar</Button>
+          <Button sx={{ fontWeight: 600 }}>Welcome to dg The CoverStar</Button>
         </Box>
       )}
     </Box>
