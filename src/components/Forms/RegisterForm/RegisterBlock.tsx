@@ -3,12 +3,15 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { BoxProps } from '@mui/material';
+
+import { useMutation, ApolloError } from '@apollo/client';
+import { Mutation, MutationCreateUserArgs, createUser } from '../../../gql';
+import { useSnackbar } from '../../../hooks/snackbar';
 
 import TextInput from '../TextInput';
 import { registerFormSchema } from '../validationSchemas';
-import { CheckboxText } from '../CustomCheckbox/styled';
 
 import { StyledRegisterBlock } from './styled';
 
@@ -24,8 +27,31 @@ enum InputNames {
 
 const RegisterBlock = (props: BoxProps) => {
   const { t } = useTranslation();
+  const snackbar = useSnackbar();
 
-  const formProps = useForm<SendUserDataProps>({
+  const [createUser1] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserArgs>(createUser);
+
+  const newUser = async (name: string, email: string, password: string) => {
+    try {
+      await createUser1({
+        variables: {
+          user: {
+            name,
+            email,
+            password,
+          },
+        },
+      });
+    } catch (error) {
+      const { graphQLErrors, message: errorText } = error as ApolloError;
+      const message = graphQLErrors && graphQLErrors.length ? graphQLErrors[0].message : errorText;
+      if (error) {
+        snackbar(message);
+      }
+    }
+  };
+
+  const formMethods = useForm<SendUserDataProps>({
     mode: 'onChange',
     reValidateMode: 'onChange',
     resolver: yupResolver(registerFormSchema),
@@ -34,17 +60,18 @@ const RegisterBlock = (props: BoxProps) => {
   const {
     handleSubmit,
     formState: { isValid },
-  } = formProps;
+  } = formMethods;
 
   const handleSendUserData = ({ email, password }: SendUserDataProps) => {
+    console.log('dfs');
+
     if (isValid) {
-      localStorage.setItem('_email', email);
-      localStorage.setItem('_password', password);
+      newUser('fdf', email, password);
     }
   };
 
   return (
-    <FormProvider {...formProps}>
+    <FormProvider {...formMethods}>
       <form onSubmit={handleSubmit(handleSendUserData)}>
         <Box position="relative" {...props}>
           <StyledRegisterBlock>
@@ -52,14 +79,6 @@ const RegisterBlock = (props: BoxProps) => {
             <TextInput type="password" name={InputNames.password} label="Password" />
             <Button type="submit">{t('header.signUp')}</Button>
           </StyledRegisterBlock>
-          {/* <Box>
-            <CheckboxText>
-              {t('landingPage.registerBlock.checkbox')}
-              <Typography>{t('footerText.privacyPolicy')}</Typography>
-              {' & '}
-              <Typography>{t('contactUsPage.form.termsAndConditions')}</Typography>
-            </CheckboxText>
-          </Box> */}
         </Box>
       </form>
     </FormProvider>
