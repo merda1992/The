@@ -52,3 +52,12 @@ export const getOneUser = gql`
     }
   }
 `;
+
+export const login = gql`
+  mutation login($auth: AuthInput!) {
+    login(auth: $auth) {
+      token
+      user
+    }
+  }
+`;

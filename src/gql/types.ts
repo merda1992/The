@@ -4,7 +4,6 @@ export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K]
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export type Scalars = {
   ID: string;
   String: string;
@@ -12,6 +11,17 @@ export type Scalars = {
   Int: number;
   Float: number;
   DateTime: any;
+};
+
+export type AuthEntity = {
+  __typename?: 'AuthEntity';
+  token: Scalars['String'];
+  user: UserEntity;
+};
+
+export type AuthInput = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type CreateUserInput = {
@@ -23,12 +33,17 @@ export type CreateUserInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   createUser: UserEntity;
+  login: AuthEntity;
   removeUser: Scalars['Float'];
   updateUser: UserEntity;
 };
 
 export type MutationCreateUserArgs = {
   user: CreateUserInput;
+};
+
+export type MutationLoginArgs = {
+  auth: AuthInput;
 };
 
 export type MutationRemoveUserArgs = {
