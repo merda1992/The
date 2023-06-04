@@ -4,7 +4,7 @@ import { experimentalStyled as styled } from '@mui/material';
 export const ToastWrapper = styled(Box)`
   display: flex;
   max-width: 296px;
-  width: 100%;
+  min-width: 200px;
   min-height: 71px;
   height: auto;
   padding: 12px 34px 12px 19px;

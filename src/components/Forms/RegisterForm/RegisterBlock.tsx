@@ -21,7 +21,7 @@ interface SendUserDataProps {
 }
 
 enum InputNames {
-  password = 'name',
+  password = 'password',
   email = 'email',
 }
 
@@ -63,8 +63,6 @@ const RegisterBlock = (props: BoxProps) => {
   } = formMethods;
 
   const handleSendUserData = ({ email, password }: SendUserDataProps) => {
-    console.log('dfs');
-
     if (isValid) {
       newUser('fdf', email, password);
     }

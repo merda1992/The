@@ -12,6 +12,12 @@ const translation = {
   signUpPopup: {
     title: 'Log in to your account',
   },
+  generalSnackbarMessageTypes: {
+    success: "Success",
+    info: "Info",
+    error: "Error"
+  },
+  emailIsAlreadyRegisteredErrorMessage: "Email is already registered",
 };
 
 export default translation;
