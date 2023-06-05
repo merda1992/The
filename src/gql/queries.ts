@@ -57,7 +57,10 @@ export const login = gql`
   mutation login($auth: AuthInput!) {
     login(auth: $auth) {
       token
-      user
+      user {
+        id
+        email
+      }
     }
   }
 `;

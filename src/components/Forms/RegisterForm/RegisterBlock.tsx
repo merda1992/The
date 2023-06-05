@@ -7,7 +7,7 @@ import { Box, Button } from '@mui/material';
 import { BoxProps } from '@mui/material';
 
 import { useMutation, ApolloError } from '@apollo/client';
-import { Mutation, MutationCreateUserArgs, createUser } from '../../../gql';
+import { Mutation, MutationLoginArgs, login } from '../../../gql';
 import { useSnackbar } from '../../../hooks/snackbar';
 
 import TextInput from '../TextInput';
@@ -29,19 +29,18 @@ const RegisterBlock = (props: BoxProps) => {
   const { t } = useTranslation();
   const snackbar = useSnackbar();
 
-  const [createUser1] = useMutation<Pick<Mutation, 'createUser'>, MutationCreateUserArgs>(createUser);
+  const [loginUser] = useMutation<Pick<Mutation, 'login'>, MutationLoginArgs>(login);
 
-  const newUser = async (name: string, email: string, password: string) => {
+  const loginUserByData = async (email: string, password: string) => {
     try {
-      await createUser1({
+      await loginUser({
         variables: {
-          user: {
-            name,
+          auth: {
             email,
             password,
           },
         },
-      });
+      }).then((data) => localStorage.setItem('token', data.data?.login.token || ''));
     } catch (error) {
       const { graphQLErrors, message: errorText } = error as ApolloError;
       const message = graphQLErrors && graphQLErrors.length ? graphQLErrors[0].message : errorText;
@@ -64,7 +63,7 @@ const RegisterBlock = (props: BoxProps) => {
 
   const handleSendUserData = ({ email, password }: SendUserDataProps) => {
     if (isValid) {
-      newUser('fdf', email, password);
+      loginUserByData(email, password);
     }
   };
 
