@@ -5,11 +5,27 @@ import App from './App';
 import { ThemeProvider } from '@mui/material';
 import { theme } from './theme/index';
 import './utils/i18n';
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink, createHttpLink } from '@apollo/client';
+
+const authMiddleware = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('token');
+
+  operation.setContext({
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  return forward(operation);
+});
+
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+});
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/graphql',
   cache: new InMemoryCache(),
+  link: authMiddleware.concat(httpLink),
 });
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
